@@ -1,6 +1,194 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-$font-principal: 'Josefin Sans', sans-serif;
+// Variáveis globais
+$primary-color: #fff
+$secondary-color: #20c997
+$text-color: #f5f5f7
+$bg-color: #000
+$container-width: 1170px
+$fonte-principal: 'Josefin Sans', sans-serif
+
+// Mixins
+
+@mixin container
+    max-width: $container-width
+    padding: 1.5rem 0
+    margin: 0 auto
+
+@mixin flex-center
+    display: flex
+    align-content: center
+    justify-content: center
     
-div
-    font-family: $font-principal
+@mixin bg-img($img)
+    background-image: url('../img/#{$img}')
+    background-size: 100%
+    background-position: center
+    background-repeat: no-repeat
+    filter: grayscale(100%)
+    transition: .6s
+
+    &:hover 
+        background-size: 110%
+        filter: grayscale(0%)
+        transition: .6s
+        background-image: linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), url('../img/#{$img}')
+
+@mixin mobile
+    @media(max-width: 425px)
+        @content
+    
+    
+
+// Estilizações    
+
+* 
+    font-family: $fonte-principal
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+body
+    background-color: $bg-color
+    color: $text-color
+
+    a
+        color: $text-color
+        text-decoration: none
+        transition: .4s
+    
+    ul
+        list-style: none
+
+.header 
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+    @include container
+
+    @include mobile
+        padding: 1.1rem
+    
+    &-brand
+        color: $primary-color
+        font-size: 3rem
+    
+        @include mobile
+            font-size: 2.3rem
+            height: 60px
+    
+    &-menu-mobile
+        display: none
+        @include mobile
+            display: block
+            width: 10%
+            
+            .btn-mobile
+                border: none
+                background-color: transparent
+                color: $primary-color
+
+                &:hover
+                    color: $secondary-color
+            
+            .list-mob 
+                width: 100%
+    
+    .navbar
+        ul
+            height: 100%
+            @include flex-center
+
+            @include mobile
+                display: none
+
+            li
+                margin: 0 1rem
+                text-transform: uppercase
+                font-size: .8rem
+
+                a
+                    &:hover
+                        color: $secondary-color
+    
+    &-social-media
+        ul
+            @include flex-center
+            height: 100%
+            @include mobile
+                display: none
+
+            li
+                margin: 0 1rem
+                
+                a
+                    &:hover
+                        color: $secondary-color
+
+.gallery
+    @include container
+    @include flex-center
+    flex-wrap: wrap
+    justify-content: space-between
+    padding: 0
+
+    @include mobile
+        flex-direction: column
+
+    &-card 
+        width: 31%
+        height: 400px
+        margin-bottom: 4%
+        @include flex-center
+        flex-direction: column
+        color: $primary-color
+
+        @include mobile
+            width: 90%
+            margin-bottom: 6%
+            justify-content: flex-end
+            padding-bottom: 15px
+
+        &-title
+            font-size: 2rem
+            font-weight: 300
+            margin-bottom: 1rem
+
+        &-btn
+            padding: .6rem 2rem
+            border: 2px solid $primary-color
+            color: $primary-color
+            font-weight: 400
+            text-transform: uppercase
+            letter-spacing: 1px
+
+            &:hover
+                background-color: $primary-color
+                color: $bg-color
+
+    #card-1
+        @include bg-img('animais.jpg')
+    #card-2
+        @include bg-img('arquitetura.jpg')
+    #card-3
+        @include bg-img('cidade.jpg')
+    #card-4
+        @include bg-img('decoracao.jpg')
+    #card-5
+        @include bg-img('esportes.jpg')
+    #card-6
+        @include bg-img('natureza.jpg')
+    #card-7
+        @include bg-img('paisagem.jpg')
+    #card-8
+        @include bg-img('pessoas.jpg')
+    #card-9
+        @include bg-img('refeicoes.jpg')  
+
+footer
+    text-align: center
+    padding-bottom: 2rem
+
+    span
+        font-weight: bold
+        color: $secondary-color
