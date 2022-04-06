@@ -2,8 +2,11 @@ import './SASS/App.sass'
 
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'
 import { AiOutlineMenu } from 'react-icons/ai'
+import { useState } from 'react';
 
 function App() {
+  const [navMenu, setNavMenu] = useState(false);
+
   return (
     <div className="App">
       <header className='header'>
@@ -52,27 +55,27 @@ function App() {
           </ul>
         </div>
         <div className="header-menu-mobile">
-          <button className='btn-mobile'><AiOutlineMenu /></button>
-          <nav className="list-mob">
-            <ul>
-              <li>
-                  <a href="/">Home</a>
-                </li>
-                <li>
-                  <a href="/">Fotos</a>
-                </li>
-                <li>
-                  <a href="/">Serviços</a>
-                </li>
-                <li>
-                  <a href="/">Sobre</a>
-                </li>
-                <li>
-                  <a href="/">Contato</a>
-                </li>
-            </ul>
-          </nav>
+          <button className='btn-mobile' onClick={() => setNavMenu(!navMenu)}><AiOutlineMenu /></button>
         </div>
+        <nav className="list-mob" style={{height: navMenu ? '100vh' : '0px'}}>
+          <ul>
+            <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/">Fotos</a>
+              </li>
+              <li>
+                <a href="/">Serviços</a>
+              </li>
+              <li>
+                <a href="/">Sobre</a>
+              </li>
+              <li>
+                <a href="/">Contato</a>
+              </li>
+          </ul>
+        </nav>
       </header>
       <main>
         <div className='gallery'>
